@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Innovation.Voice.Win.UI
@@ -16,7 +13,7 @@ namespace Innovation.Voice.Win.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VoiceForm());
+            Application.Run(new MainForm());
         }
     }
 }

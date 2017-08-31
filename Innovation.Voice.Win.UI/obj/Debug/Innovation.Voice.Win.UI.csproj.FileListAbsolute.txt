@@ -39,6 +39,12 @@ C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\bin\Debug\Microsof
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\bin\Debug\Microsoft.Extensions.Primitives.xml
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\bin\Debug\Newtonsoft.Json.xml
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.csprojResolveAssemblyReference.cache
-C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.VoiceForm.resources
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.Properties.Resources.resources
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.csproj.GenerateResource.Cache
+C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\bin\Debug\Interop.AUDIOCAPTURELib.dll
+C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\bin\Debug\AxInterop.AUDIOCAPTURELib.dll
+C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Interop.AUDIOCAPTURELib.dll
+C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\AxInterop.AUDIOCAPTURELib.dll
+C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.csproj.ResolveComReference.cache
+C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.EnrollmentForm.resources
+C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.MainForm.resources
