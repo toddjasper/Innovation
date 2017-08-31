@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Configuration;
 using System.Windows.Forms;
+using Innovation.Voice.Win.UI.Helpers;
 using Innovation.Voice.Win.UI.Models;
 using Innovation.Voice.Win.UI.Query.SpeechQueries;
-using Newtonsoft.Json;
 
 namespace Innovation.Voice.Win.UI
 {
@@ -48,14 +48,26 @@ namespace Innovation.Voice.Win.UI
 
         private void btnAuthenticate_Click(object sender, EventArgs e)
         {
-            var identifyQuery = new WebSpeechIdentificationQuery
+            WebSpeechIdentificationQuery identifyQuery;
+            if (ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "1"] != null)
             {
-                IdentificationProfileIds = string.Format("{0},{1},{2}",
-                    ConfigurationManager.AppSettings["VerificationProfileId_todd.jasper1"],
-                    ConfigurationManager.AppSettings["VerificationProfileId_frank.venezia1"],
-                    ConfigurationManager.AppSettings["VerificationProfileId_kait.stecher1"]),
-                ShortAudio = true
-            };
+                identifyQuery = new WebSpeechIdentificationQuery
+                {
+                    IdentificationProfileIds = string.Format("{0},{1},{2}",
+                        ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "1"],
+                        ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "2"],
+                        ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "3"]),
+                    ShortAudio = true
+                };
+            }
+            else
+            {
+                identifyQuery = new WebSpeechIdentificationQuery
+                {
+                    IdentificationProfileIds = Guid.Empty.ToString(),
+                    ShortAudio = true
+                };
+            }
 
             var fileHelper = new FileHelper();
             var wavBytes = fileHelper.FileToBytes(_identificationPath + cboUsername.Text + ".identify.wav");
@@ -63,20 +75,63 @@ namespace Innovation.Voice.Win.UI
             var identifyUri = new Uri(identifyQuery.ToString());
             var downloader = new HttpDownloader();
             var operationLocation = downloader.GetIdentificationResponse(identifyUri, wavBytes);
+            var operationResponseModel = downloader.GetOperationResponse(new Uri(operationLocation));
+            Authenticate(operationResponseModel);
+        }
 
-            var response = downloader.GetOperationResponse(new Uri(operationLocation));
-            var responseModel = JsonConvert.DeserializeObject<IdentificationModel>(response);
-
-            if (responseModel.Status.ToLower() == "success")
+        private void btnAuthenticationFailTest_Click(object sender, EventArgs e)
+        {
+            var identifyQuery = new WebSpeechIdentificationQuery
             {
-                var accessGrantedForm = new AccessGrantedForm();
-                accessGrantedForm.Show();
+                IdentificationProfileIds = string.Format("{0},{1},{2}",
+                    ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "1"],
+                    ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "2"],
+                    ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "3"]),
+                ShortAudio = true
+            };
+
+            var fileHelper = new FileHelper();
+            var wavBytes = fileHelper.FileToBytes(_identificationPath + "kait.stecher.identify.wav");
+
+            var identifyUri = new Uri(identifyQuery.ToString());
+            var downloader = new HttpDownloader();
+            var operationLocation = downloader.GetIdentificationResponse(identifyUri, wavBytes);
+
+            var operationResponseModel = downloader.GetOperationResponse(new Uri(operationLocation));
+            Authenticate(operationResponseModel);
+        }
+
+        private void Authenticate(IdentificationModel model)
+        {
+            
+            if (model.Status.ToLower() == "succeeded")
+            {
+                if (model.ProcessingResult.Confidence.ToLower() == "high")
+                {
+                    ShowAccessGranted();
+                }
+                else if (model.ProcessingResult.Confidence.ToLower() != "high" &&
+                         model.ProcessingResult.IdentifiedProfileId.ToGuid() == Guid.Empty)
+                {
+                    ShowAccessDenied();
+                }
             }
             else
             {
-                var accessDeniedForm = new AccessDeniedForm();
-                accessDeniedForm.Show();
+                ShowAccessDenied();
             }
+        }
+
+        private void ShowAccessGranted()
+        {
+            var accessGrantedForm = new AccessGrantedForm();
+            accessGrantedForm.Show();
+        }
+
+        private void ShowAccessDenied()
+        {
+            var accessDeniedForm = new AccessDeniedForm();
+            accessDeniedForm.Show();
         }
     }
 }

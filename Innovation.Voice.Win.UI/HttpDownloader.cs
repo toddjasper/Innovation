@@ -3,8 +3,9 @@ using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using Innovation.Voice.Win.UI.Models;
+using Newtonsoft.Json;
 
 namespace Innovation.Voice.Win.UI
 {
@@ -52,36 +53,22 @@ namespace Innovation.Voice.Win.UI
             return httpWebResponse.Headers["Operation-Location"];
         }
 
-        public string GetOperationResponse(Uri uri)
+        public IdentificationModel GetOperationResponse(Uri uri)
         {
-            //var request = (HttpWebRequest)WebRequest.Create(uri.ToString());
-
-            //request.Method = "GET";
-            //request.ContentType = "application/json";
-            //request.ContentLength = 0;
-            //request.Headers.Add("Ocp-Apim-Subscription-Key", ConfigurationManager.AppSettings["SpeechKey1"]);
-
-            //var httpWebResponse = (HttpWebResponse)request.GetResponse();
-            //var responseStream = httpWebResponse.GetResponseStream();
-            //var responseMemoryStream = new MemoryStream();
-            //responseStream?.CopyTo(responseMemoryStream);
-
-            //var responseBytes = responseMemoryStream.ToArray();
-            //var toStringMemoryStream = new MemoryStream(responseBytes);
-            //var streamReader = new StreamReader(toStringMemoryStream);
-
-            //return streamReader.ReadToEnd();
-
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", ConfigurationManager.AppSettings["SpeechKey1"]);
-            var response = Task.Run(() => client.GetAsync(uri)).Result;
-
             while (true)
             {
-                if (response.IsSuccessStatusCode)
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", ConfigurationManager.AppSettings["SpeechKey1"]);
+                var response = Task.Run(() => client.GetAsync(uri)).Result;
+                var operationResponse = JsonConvert.DeserializeObject<IdentificationModel>(response.Content.ReadAsStringAsync().Result);
+
+                switch (operationResponse.Status)
                 {
-                    var text =  response.Content.ReadAsStringAsync().Result;
-                    return text;
+                    case "succeeded":
+                        return JsonConvert.DeserializeObject<IdentificationModel>(response.Content.ReadAsStringAsync().Result);
+
+                    case "failed":
+                        return JsonConvert.DeserializeObject<IdentificationModel>(response.Content.ReadAsStringAsync().Result);
                 }
             }
         }

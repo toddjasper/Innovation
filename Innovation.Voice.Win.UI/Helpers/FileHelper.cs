@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Innovation.Voice.Win.UI
+namespace Innovation.Voice.Win.UI.Helpers
 {
     public class FileHelper
     {

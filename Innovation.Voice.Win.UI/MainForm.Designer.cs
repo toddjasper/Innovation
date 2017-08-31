@@ -36,6 +36,7 @@
             this.btnAuthenticate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cboUsername = new System.Windows.Forms.ComboBox();
+            this.btnAuthenticationFailTest = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,11 +110,23 @@
             this.cboUsername.Size = new System.Drawing.Size(221, 24);
             this.cboUsername.TabIndex = 6;
             // 
+            // btnAuthenticationFailTest
+            // 
+            this.btnAuthenticationFailTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAuthenticationFailTest.Location = new System.Drawing.Point(14, 300);
+            this.btnAuthenticationFailTest.Name = "btnAuthenticationFailTest";
+            this.btnAuthenticationFailTest.Size = new System.Drawing.Size(678, 73);
+            this.btnAuthenticationFailTest.TabIndex = 7;
+            this.btnAuthenticationFailTest.Text = "Authenticate Frank with Kait";
+            this.btnAuthenticationFailTest.UseVisualStyleBackColor = true;
+            this.btnAuthenticationFailTest.Click += new System.EventHandler(this.btnAuthenticationFailTest_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 673);
+            this.Controls.Add(this.btnAuthenticationFailTest);
             this.Controls.Add(this.cboUsername);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAuthenticate);
@@ -140,6 +153,7 @@
         private System.Windows.Forms.Button btnAuthenticate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboUsername;
+        private System.Windows.Forms.Button btnAuthenticationFailTest;
     }
 }
 
