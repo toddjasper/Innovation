@@ -19,8 +19,22 @@ namespace Innovation.Voice.Win.UI
 
         private void btnRecord_Click(object sender, EventArgs e)
         {
+            //string command = "set recsound time format 16 bit";
+            //command += " bitspersample 16K";
+            //command += " channels mono";
+            ////command += " samplespersec " + WaveSamplesPerSec;
+            ////command += " bytespersec " + WaveBytesPerSec;
+            ////command += " alignment " + WaveAlignment;
+
+            //mciSendString("open new Type waveaudio Alias recsound", "", 0, 0);
+            //mciSendString("record recsound", "", 0, 0);
+
+
             mciSendString("open new Type waveaudio Alias recsound", "", 0, 0);
+            mciSendString("set recsound time format ms bitspersample 16 samplespersec 16000 channels mono", "", 0, 0);
             mciSendString("record recsound", "", 0, 0);
+
+
         }
 
         private void btnStop_Click(object sender, EventArgs e)

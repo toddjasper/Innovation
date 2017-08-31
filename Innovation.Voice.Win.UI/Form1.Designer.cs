@@ -140,6 +140,7 @@
             this.Controls.Add(this.btnRecord);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VoiceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Voice Authentication";
             this.ResumeLayout(false);
             this.PerformLayout();
