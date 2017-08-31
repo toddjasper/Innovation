@@ -41,9 +41,41 @@ namespace Innovation.Voice.Win.UI
             //mciSendString("set recsound time format ms bitspersample 16 samplespersec 16000 channels mono", "", 0, 0);
             //mciSendString("record recsound", "", 0, 0);
 
+            /*
+                COMMANDS:
+
+                alignment integer
+                any input
+                any output
+                audio all off
+                audio all on
+                audio left off
+                audio left on
+                audio right off
+                audio right on
+                bitspersample bit_count
+                bytespersec byte_rate
+                channels channel_count
+                door closed
+                door open
+                format tag pcm
+                format tag tag
+                input integer
+                output integer
+                samplespersec integer
+                time format bytes
+                time format milliseconds
+                time format samples 
+            */
+
             SetFileCount();
 
+            // ORIGINAL
+            //mciSendString("open new Type waveaudio Alias recsound", "", 0, 0);
+            //mciSendString("open new Type waveaudio channels 1 Alias recsound", "", 0, 0);
             mciSendString("open new Type waveaudio Alias recsound", "", 0, 0);
+            //mciSendString("set recsound bitspersample 16 channels 1", "", 0, 0);
+            mciSendString("set recsound channels 1", "", 0, 0);
             mciSendString("record recsound", "", 0, 0);
         }
 
@@ -62,7 +94,7 @@ namespace Innovation.Voice.Win.UI
             };
 
             var fileHelper = new FileHelper();
-            var wavBytes = fileHelper.FileToBytes(_enrollmentPath + txtUsername.Text + _audioFileCount + ".wav");
+            var wavBytes = fileHelper.FileToBytes(_enrollmentPath + txtUsername.Text + "0.wav");
 
             var enrollUri = new Uri(enrollQuery.ToString());
             var downloader = new HttpDownloader();
