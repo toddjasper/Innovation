@@ -1,6 +1,9 @@
 ﻿using System;
-using System.Configuration;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using Innovation.Voice.Win.UI.DataAccess;
 using Innovation.Voice.Win.UI.Helpers;
 using Innovation.Voice.Win.UI.Models;
 using Innovation.Voice.Win.UI.Query.SpeechQueries;
@@ -25,40 +28,48 @@ namespace Innovation.Voice.Win.UI
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            var profileIds = GetProfileIds();  
+
             // Per the speech identification spec we need 3 profile enrollments per user.
-            for (var i = 1; i <= 3; i++)
+            var index = 1;
+            foreach (var profileId in profileIds)
             {
                 var enrollQuery = new WebSpeechEnrollmentQuery
                 {
-                    ProfileId = ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + i],
+                    ProfileId = profileId,
                     ShortAudio = true
                 };
 
                 var fileHelper = new FileHelper();
-                var wavBytes = fileHelper.FileToBytes(_enrollmentPath + cboUsername.Text + i + ".wav");
+                var wavBytes = fileHelper.FileToBytes(_enrollmentPath + cboUsername.Text + index + ".wav");
 
                 var enrollUri = new Uri(enrollQuery.ToString());
                 var downloader = new HttpDownloader();
 
                 var response = downloader.GetRegistrationResponse(enrollUri, wavBytes);
 
-                MessageBox.Show(response + " for " + cboUsername.Text + " " + i, "Registration Response", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(response + " for " + cboUsername.Text + " " + index, "Registration Response", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                index++;
             }
         }
 
         private void btnAuthenticate_Click(object sender, EventArgs e)
         {
-            WebSpeechIdentificationQuery identifyQuery;
-            if (ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "1"] != null)
+            if (!File.Exists(_identificationPath + "attempt.wav"))
             {
-                identifyQuery = new WebSpeechIdentificationQuery
-                {
-                    IdentificationProfileIds = string.Format("{0},{1},{2}",
-                        ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "1"],
-                        ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "2"],
-                        ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "3"]),
-                    ShortAudio = true
-                };
+                ShowAccessDenied();
+                return;
+            }
+
+            var profileIds = GetProfileIds();
+            WebSpeechIdentificationQuery identifyQuery;
+            if (profileIds != null && profileIds.Any())
+            {
+                identifyQuery = new WebSpeechIdentificationQuery { ShortAudio = true };
+                foreach (var id in profileIds)
+                    identifyQuery.IdentificationProfileIds += id + ",";
+
+                identifyQuery.IdentificationProfileIds = identifyQuery.IdentificationProfileIds.Substring(0, identifyQuery.IdentificationProfileIds.Length - 1);
             }
             else
             {
@@ -70,8 +81,7 @@ namespace Innovation.Voice.Win.UI
             }
 
             var fileHelper = new FileHelper();
-            var wavBytes = fileHelper.FileToBytes(_identificationPath + cboUsername.Text + ".identify.wav");
-
+            var wavBytes = fileHelper.FileToBytes(_identificationPath + "attempt.wav");
             var identifyUri = new Uri(identifyQuery.ToString());
             var downloader = new HttpDownloader();
             var operationLocation = downloader.GetIdentificationResponse(identifyUri, wavBytes);
@@ -81,18 +91,13 @@ namespace Innovation.Voice.Win.UI
 
         private void btnAuthenticationFailTest_Click(object sender, EventArgs e)
         {
-            var identifyQuery = new WebSpeechIdentificationQuery
-            {
-                IdentificationProfileIds = string.Format("{0},{1},{2}",
-                    ConfigurationManager.AppSettings["VerificationProfileId_frank.venezia1"],
-                    ConfigurationManager.AppSettings["VerificationProfileId_frank.venezia2"],
-                    ConfigurationManager.AppSettings["VerificationProfileId_frank.venezia3"]),
-                ShortAudio = true
-            };
+            var profileIds = GetProfileIds();
+            var identifyQuery = new WebSpeechIdentificationQuery { ShortAudio = true };
+            foreach (var id in profileIds)
+                identifyQuery.IdentificationProfileIds += id;
 
             var fileHelper = new FileHelper();
             var wavBytes = fileHelper.FileToBytes(_identificationPath + "kait.stecher.identify.wav");
-
             var identifyUri = new Uri(identifyQuery.ToString());
             var downloader = new HttpDownloader();
             var operationLocation = downloader.GetIdentificationResponse(identifyUri, wavBytes);
@@ -103,7 +108,6 @@ namespace Innovation.Voice.Win.UI
 
         private void Authenticate(IdentificationModel model)
         {
-            
             if (model.Status.ToLower() == "succeeded")
             {
                 if (model.ProcessingResult.Confidence.ToLower() == "high")
@@ -122,6 +126,12 @@ namespace Innovation.Voice.Win.UI
             }
         }
 
+        private IEnumerable<string> GetProfileIds()
+        {
+            var speechDataAccess = new SpeechDataAccess();
+            return speechDataAccess.GetProfileIds(cboUsername.Text).Ids;
+        }
+
         private void ShowAccessGranted()
         {
             var accessGrantedForm = new AccessGrantedForm();
@@ -133,5 +143,26 @@ namespace Innovation.Voice.Win.UI
             var accessDeniedForm = new AccessDeniedForm();
             accessDeniedForm.Show();
         }
+
+
+
+
+
+
+
+        //private void btnCreateProfiles_Click(object sender, EventArgs e)
+        //{
+        //    var profileQuery = new WebSpeechProfileQuery();
+        //    var profileUri = new Uri(profileQuery.ToString());
+        //    var downloader = new HttpDownloader();
+        //    var response = downloader.CreateProfile(profileUri);
+        //    var profileId = JsonConvert.DeserializeObject<ProfileModel>(response).ProfileId;
+
+        //    var speechDataAccess = new SpeechDataAccess();
+        //    speechDataAccess.InsertProfileId(cboUsername.Text, profileId);
+
+        //    MessageBox.Show("Profile created successfully", "Profile Creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //}
+
     }
 }

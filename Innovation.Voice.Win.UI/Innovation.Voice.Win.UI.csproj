@@ -115,12 +115,16 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\IdentificationModel.cs" />
     <Compile Include="Models\ProfileEntity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HttpDownloader.cs" />
     <Compile Include="Query\IUrlParameter.cs" />
+    <Compile Include="Query\SpeechQueries\WebSpeechProfileQuery.cs">
+      <Generator>MSBuild:Compile</Generator>
+    </Compile>
     <Compile Include="Query\SpeechQueries\WebSpeechIdentificationQuery.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>

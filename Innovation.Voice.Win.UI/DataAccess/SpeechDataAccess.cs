@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using Innovation.Voice.Win.UI.Models;
@@ -18,7 +19,7 @@ namespace Innovation.Voice.Win.UI.DataAccess
         {
             if (_sqlConnection == null) return null;
 
-            var entity = new ProfileEntity();
+            var entity = new ProfileEntity {Ids = new List<string>()};
 
             try
             {

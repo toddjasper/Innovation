@@ -62,7 +62,7 @@
             // miExit
             // 
             this.miExit.Name = "miExit";
-            this.miExit.Size = new System.Drawing.Size(181, 26);
+            this.miExit.Size = new System.Drawing.Size(108, 26);
             this.miExit.Text = "E&xit";
             this.miExit.Click += new System.EventHandler(this.miExit_Click);
             // 
@@ -102,7 +102,6 @@
             // 
             this.cboUsername.FormattingEnabled = true;
             this.cboUsername.Items.AddRange(new object[] {
-            "todd.jasper",
             "dc.fisher",
             "frank.venezia",
             "kait.stecher"});
@@ -120,6 +119,7 @@
             this.btnAuthenticationFailTest.TabIndex = 7;
             this.btnAuthenticationFailTest.Text = "Authenticate Frank with Kait\'s Voice";
             this.btnAuthenticationFailTest.UseVisualStyleBackColor = true;
+            this.btnAuthenticationFailTest.Visible = false;
             this.btnAuthenticationFailTest.Click += new System.EventHandler(this.btnAuthenticationFailTest_Click);
             // 
             // MainForm
