@@ -6,8 +6,9 @@ namespace Innovation.Voice.Win.UI
 {
     public class HttpDownloader
     {
-        public void MakeRequest(Uri uri)
+        public string GetResponse(Uri uri, byte[] postData)
         {
+            var responseString = string.Empty;
             var request = (HttpWebRequest)WebRequest.Create(uri);
             request.Proxy = null;
             request.ServicePoint.Expect100Continue = false;
@@ -19,18 +20,23 @@ namespace Innovation.Voice.Win.UI
             request.ServicePoint.Expect100Continue = false;
             using (var httpWebResponse = (HttpWebResponse)request.GetResponse())
             {
-                byte[] responseBytes;
                 using (var responseStream = httpWebResponse.GetResponseStream())
                 {
-                    using (var memoryStream = new MemoryStream())
+                    byte[] responseBytes;
+                    using (var responseMemoryStream = new MemoryStream())
                     {
-                        if (responseStream != null)
-                        {
-                            // TODO: RecycableMemoryStream? Chunks? MS documentation seems to suggest that chunks = slower than CopyTo
-                            responseStream.CopyTo(memoryStream);
-                        }
-                        responseBytes = memoryStream.ToArray();
+                        responseStream?.CopyTo(responseMemoryStream);
+                        responseBytes = responseMemoryStream.ToArray();
                     }
+
+                    using (var toStringMemoryStream = new MemoryStream(responseBytes))
+                    {
+                        using (var streamReader = new StreamReader(toStringMemoryStream))
+                        {
+                            responseString = streamReader.ReadToEnd();
+                        }
+                    }
+                    return responseString;
                 }
             }
         }

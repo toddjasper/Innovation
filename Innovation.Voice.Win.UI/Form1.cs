@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Innovation.Voice.Win.UI
@@ -27,7 +28,7 @@ namespace Innovation.Voice.Win.UI
 
         private void btnSpeechRequest_Click(object sender, System.EventArgs e)
         {
-
+            var enrollUri = new Uri("https://westus.api.cognitive.microsoft.com/spid/v1.0/identificationProfiles/{identificationProfileId}/enroll");
         }
     }
 }
