@@ -7,6 +7,7 @@ using Innovation.Voice.Win.UI.DataAccess;
 using Innovation.Voice.Win.UI.Helpers;
 using Innovation.Voice.Win.UI.Models;
 using Innovation.Voice.Win.UI.Query.SpeechQueries;
+using Newtonsoft.Json;
 
 namespace Innovation.Voice.Win.UI
 {
@@ -18,6 +19,7 @@ namespace Innovation.Voice.Win.UI
         public MainForm()
         {
             InitializeComponent();
+            BindUsernames();
             cboUsername.SelectedIndex = 0;
         }
 
@@ -81,6 +83,7 @@ namespace Innovation.Voice.Win.UI
             }
 
             var fileHelper = new FileHelper();
+            //var wavBytes = fileHelper.FileToBytes(_identificationPath + cboUsername.Text + ".identify.wav");
             var wavBytes = fileHelper.FileToBytes(_identificationPath + "attempt.wav");
             var identifyUri = new Uri(identifyQuery.ToString());
             var downloader = new HttpDownloader();
@@ -106,18 +109,47 @@ namespace Innovation.Voice.Win.UI
             Authenticate(operationResponseModel);
         }
 
+        private void btnCreateProfiles_Click(object sender, EventArgs e)
+        {
+            for (var i = 1; i <= 3; i++)
+            {
+                var profileQuery = new WebSpeechProfileQuery();
+                var profileUri = new Uri(profileQuery.ToString());
+                var downloader = new HttpDownloader();
+                var response = downloader.CreateProfile(profileUri);
+                var profileId = JsonConvert.DeserializeObject<ProfileModel>(response).ProfileId;
+
+                var speechDataAccess = new SpeechDataAccess();
+                speechDataAccess.InsertProfileId(cboUsername.Text, profileId);
+            }
+
+            MessageBox.Show("Profiles created successfully", "Profile Creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void Authenticate(IdentificationModel model)
         {
             if (model.Status.ToLower() == "succeeded")
             {
-                if (model.ProcessingResult.Confidence.ToLower() == "high")
+                switch (model.ProcessingResult.Confidence.ToLower())
                 {
-                    ShowAccessGranted();
-                }
-                else if (model.ProcessingResult.Confidence.ToLower() != "high" &&
-                         model.ProcessingResult.IdentifiedProfileId.ToGuid() == Guid.Empty)
-                {
-                    ShowAccessDenied();
+                    case "high":
+
+                        if (model.ProcessingResult.IdentifiedProfileId.ToGuid() == Guid.Empty)
+                            ShowAccessDenied();
+                        else
+                            ShowAccessGranted();
+
+                        return;
+
+                    case "normal":
+
+                        ShowAccessDenied();
+                        return;
+
+                    case "now":
+
+                        ShowAccessDenied();
+                        return;
                 }
             }
             else
@@ -144,25 +176,13 @@ namespace Innovation.Voice.Win.UI
             accessDeniedForm.Show();
         }
 
-
-
-
-
-
-
-        //private void btnCreateProfiles_Click(object sender, EventArgs e)
-        //{
-        //    var profileQuery = new WebSpeechProfileQuery();
-        //    var profileUri = new Uri(profileQuery.ToString());
-        //    var downloader = new HttpDownloader();
-        //    var response = downloader.CreateProfile(profileUri);
-        //    var profileId = JsonConvert.DeserializeObject<ProfileModel>(response).ProfileId;
-
-        //    var speechDataAccess = new SpeechDataAccess();
-        //    speechDataAccess.InsertProfileId(cboUsername.Text, profileId);
-
-        //    MessageBox.Show("Profile created successfully", "Profile Creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //}
-
+        private void BindUsernames()
+        {
+            cboUsername.Items.Add("dc.fisher");
+            cboUsername.Items.Add("frank.venezia");
+            cboUsername.Items.Add("kait.stecher");
+            cboUsername.Items.Add("dave.delphia");
+            cboUsername.Items.Add("jane.doe");
+        }
     }
 }

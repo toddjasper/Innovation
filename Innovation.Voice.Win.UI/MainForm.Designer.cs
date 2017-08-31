@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboUsername = new System.Windows.Forms.ComboBox();
             this.btnAuthenticationFailTest = new System.Windows.Forms.Button();
+            this.btnCreateProfiles = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,10 +102,6 @@
             // cboUsername
             // 
             this.cboUsername.FormattingEnabled = true;
-            this.cboUsername.Items.AddRange(new object[] {
-            "dc.fisher",
-            "frank.venezia",
-            "kait.stecher"});
             this.cboUsername.Location = new System.Drawing.Point(15, 49);
             this.cboUsername.Name = "cboUsername";
             this.cboUsername.Size = new System.Drawing.Size(221, 24);
@@ -117,16 +114,29 @@
             this.btnAuthenticationFailTest.Name = "btnAuthenticationFailTest";
             this.btnAuthenticationFailTest.Size = new System.Drawing.Size(678, 73);
             this.btnAuthenticationFailTest.TabIndex = 7;
-            this.btnAuthenticationFailTest.Text = "Authenticate Frank with Kait\'s Voice";
+            this.btnAuthenticationFailTest.Text = "Authenticate with other account";
             this.btnAuthenticationFailTest.UseVisualStyleBackColor = true;
             this.btnAuthenticationFailTest.Visible = false;
             this.btnAuthenticationFailTest.Click += new System.EventHandler(this.btnAuthenticationFailTest_Click);
+            // 
+            // btnCreateProfiles
+            // 
+            this.btnCreateProfiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreateProfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateProfiles.Location = new System.Drawing.Point(290, 329);
+            this.btnCreateProfiles.Name = "btnCreateProfiles";
+            this.btnCreateProfiles.Size = new System.Drawing.Size(251, 46);
+            this.btnCreateProfiles.TabIndex = 8;
+            this.btnCreateProfiles.Text = "Create Profiles";
+            this.btnCreateProfiles.UseVisualStyleBackColor = true;
+            this.btnCreateProfiles.Click += new System.EventHandler(this.btnCreateProfiles_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 387);
+            this.Controls.Add(this.btnCreateProfiles);
             this.Controls.Add(this.btnAuthenticationFailTest);
             this.Controls.Add(this.cboUsername);
             this.Controls.Add(this.label1);
@@ -155,6 +165,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboUsername;
         private System.Windows.Forms.Button btnAuthenticationFailTest;
+        private System.Windows.Forms.Button btnCreateProfiles;
     }
 }
 
