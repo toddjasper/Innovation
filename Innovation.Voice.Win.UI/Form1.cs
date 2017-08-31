@@ -28,6 +28,12 @@ namespace Innovation.Voice.Win.UI
 
         private void btnSpeechRequest_Click(object sender, System.EventArgs e)
         {
+            /*
+            Endpoint: https://westus.api.cognitive.microsoft.com/spid/v1.0
+            Key 1: d54d4d788d384a33b6e5dc0e7e492c8a
+            Key 2: 0f80a15f531143c99ab1d7d9b3b7dc79             
+            */
+
             var enrollUri = new Uri("https://westus.api.cognitive.microsoft.com/spid/v1.0/identificationProfiles/{identificationProfileId}/enroll");
         }
     }
