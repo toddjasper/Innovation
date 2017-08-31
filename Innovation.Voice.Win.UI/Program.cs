@@ -5,6 +5,8 @@ namespace Innovation.Voice.Win.UI
 {
     static class Program
     {
+        public static MainForm _mainFormInstance;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -13,7 +15,9 @@ namespace Innovation.Voice.Win.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            var mainForm = new MainForm();
+            _mainFormInstance = mainForm;
+            Application.Run(mainForm);
         }
     }
 }

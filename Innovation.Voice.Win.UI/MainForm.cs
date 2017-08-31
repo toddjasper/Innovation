@@ -84,9 +84,9 @@ namespace Innovation.Voice.Win.UI
             var identifyQuery = new WebSpeechIdentificationQuery
             {
                 IdentificationProfileIds = string.Format("{0},{1},{2}",
-                    ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "1"],
-                    ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "2"],
-                    ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + "3"]),
+                    ConfigurationManager.AppSettings["VerificationProfileId_frank.venezia1"],
+                    ConfigurationManager.AppSettings["VerificationProfileId_frank.venezia2"],
+                    ConfigurationManager.AppSettings["VerificationProfileId_frank.venezia3"]),
                 ShortAudio = true
             };
 

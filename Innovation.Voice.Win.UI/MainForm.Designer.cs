@@ -62,16 +62,17 @@
             // miExit
             // 
             this.miExit.Name = "miExit";
-            this.miExit.Size = new System.Drawing.Size(108, 26);
+            this.miExit.Size = new System.Drawing.Size(181, 26);
             this.miExit.Text = "E&xit";
             this.miExit.Click += new System.EventHandler(this.miExit_Click);
             // 
             // btnRegister
             // 
+            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(15, 79);
+            this.btnRegister.Location = new System.Drawing.Point(547, 329);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(678, 73);
+            this.btnRegister.Size = new System.Drawing.Size(145, 46);
             this.btnRegister.TabIndex = 1;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -80,7 +81,7 @@
             // btnAuthenticate
             // 
             this.btnAuthenticate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuthenticate.Location = new System.Drawing.Point(15, 210);
+            this.btnAuthenticate.Location = new System.Drawing.Point(14, 93);
             this.btnAuthenticate.Name = "btnAuthenticate";
             this.btnAuthenticate.Size = new System.Drawing.Size(678, 73);
             this.btnAuthenticate.TabIndex = 2;
@@ -113,11 +114,11 @@
             // btnAuthenticationFailTest
             // 
             this.btnAuthenticationFailTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuthenticationFailTest.Location = new System.Drawing.Point(14, 300);
+            this.btnAuthenticationFailTest.Location = new System.Drawing.Point(15, 193);
             this.btnAuthenticationFailTest.Name = "btnAuthenticationFailTest";
             this.btnAuthenticationFailTest.Size = new System.Drawing.Size(678, 73);
             this.btnAuthenticationFailTest.TabIndex = 7;
-            this.btnAuthenticationFailTest.Text = "Authenticate Frank with Kait";
+            this.btnAuthenticationFailTest.Text = "Authenticate Frank with Kait\'s Voice";
             this.btnAuthenticationFailTest.UseVisualStyleBackColor = true;
             this.btnAuthenticationFailTest.Click += new System.EventHandler(this.btnAuthenticationFailTest_Click);
             // 
@@ -125,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 673);
+            this.ClientSize = new System.Drawing.Size(706, 387);
             this.Controls.Add(this.btnAuthenticationFailTest);
             this.Controls.Add(this.cboUsername);
             this.Controls.Add(this.label1);
