@@ -9,6 +9,9 @@ namespace Innovation.Voice.Win.UI
 {
     public partial class EnrollmentForm : Form
     {
+        public static string _enrollmentPath = @"C:\temp\Audio\Enrollment\";
+        public static string _identificationPath = @"C:\temp\Audio\Identification\";
+
         private int _audioFileCount = 0;
 
         public EnrollmentForm()
@@ -38,7 +41,7 @@ namespace Innovation.Voice.Win.UI
             //mciSendString("set recsound time format ms bitspersample 16 samplespersec 16000 channels mono", "", 0, 0);
             //mciSendString("record recsound", "", 0, 0);
 
-            _audioFileCount = GetFileCount();
+            SetFileCount();
 
             mciSendString("open new Type waveaudio Alias recsound", "", 0, 0);
             mciSendString("record recsound", "", 0, 0);
@@ -46,7 +49,7 @@ namespace Innovation.Voice.Win.UI
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            mciSendString(@"save recsound " + MainForm._enrollmentPath + txtUsername.Text + _audioFileCount + ".wav", "", 0, 0);
+            mciSendString(@"save recsound " + _enrollmentPath + txtUsername.Text + _audioFileCount + ".wav", "", 0, 0);
             mciSendString("close recsound ", "", 0, 0);
         }
 
@@ -59,7 +62,7 @@ namespace Innovation.Voice.Win.UI
             };
 
             var fileHelper = new FileHelper();
-            var wavBytes = fileHelper.FileToBytes(MainForm._enrollmentPath + txtUsername.Text + _audioFileCount + ".wav");
+            var wavBytes = fileHelper.FileToBytes(_enrollmentPath + txtUsername.Text + _audioFileCount + ".wav");
 
             var enrollUri = new Uri(enrollQuery.ToString());
             var downloader = new HttpDownloader();
@@ -70,11 +73,31 @@ namespace Innovation.Voice.Win.UI
             MessageBox.Show(response, "Registration Response", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private int GetFileCount()
+        private void SetFileCount()
         {
-            var directory = Directory.GetFiles(MainForm._identificationPath + txtUsername.Text + "*.wav");
-            var fileCount = directory.Length;
-            return fileCount++;
+            var fileCount = 1;
+            if (File.Exists(_enrollmentPath + txtUsername.Text + "1.wav"))
+            {
+                fileCount++;
+                _audioFileCount = fileCount;
+            }
+
+            if (File.Exists(_enrollmentPath + txtUsername.Text + "2.wav"))
+            {
+                fileCount++;
+                _audioFileCount = fileCount;
+            }
+
+            if (File.Exists(_enrollmentPath + txtUsername.Text + "3.wav"))
+            {
+                fileCount++;
+                _audioFileCount = fileCount;
+            }
+                
+            if (_audioFileCount > 3)
+            {
+                _audioFileCount = 1;
+            }
         }
     }
 }

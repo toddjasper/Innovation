@@ -79,6 +79,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessDenied.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccessDenied.Designer.cs">
+      <DependentUpon>AccessDenied.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccessGranted.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccessGranted.Designer.cs">
+      <DependentUpon>AccessGranted.cs</DependentUpon>
+    </Compile>
     <Compile Include="EnrollmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +115,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Compile>
     <Compile Include="StringExtensions.cs" />
+    <EmbeddedResource Include="AccessDenied.resx">
+      <DependentUpon>AccessDenied.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccessGranted.resx">
+      <DependentUpon>AccessGranted.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EnrollmentForm.resx">
       <DependentUpon>EnrollmentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,6 +153,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\access_denied.gif" />
+    <Content Include="Images\access_granted.gif" />
     <Content Include="Images\record.png" />
     <Content Include="Images\stop.png" />
     <Content Include="voice.ico" />

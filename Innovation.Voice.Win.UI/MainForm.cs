@@ -5,9 +5,6 @@ namespace Innovation.Voice.Win.UI
 {
     public partial class MainForm : Form
     {
-        public static string _enrollmentPath = @"C:\temp\Audio\Enrollment\";
-        public static string _identificationPath = @"C:\temp\Audio\Identification\";
-
         public MainForm()
         {
             InitializeComponent();
