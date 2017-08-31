@@ -24,5 +24,10 @@ namespace Innovation.Voice.Win.UI
             mciSendString(@"save recsound " + txtOutputDirectory.Text + txtUser.Text + ".wav", "", 0, 0);
             mciSendString("close recsound ", "", 0, 0);
         }
+
+        private void btnSpeechRequest_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

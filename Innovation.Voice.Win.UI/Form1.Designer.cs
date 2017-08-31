@@ -35,12 +35,13 @@
             this.lblOutput = new System.Windows.Forms.Label();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.lblUser = new System.Windows.Forms.Label();
+            this.btnSpeechRequest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnRecord
             // 
             this.btnRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecord.Location = new System.Drawing.Point(16, 210);
+            this.btnRecord.Location = new System.Drawing.Point(12, 149);
             this.btnRecord.Name = "btnRecord";
             this.btnRecord.Size = new System.Drawing.Size(211, 188);
             this.btnRecord.TabIndex = 0;
@@ -51,7 +52,7 @@
             // btnStop
             // 
             this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStop.Location = new System.Drawing.Point(345, 210);
+            this.btnStop.Location = new System.Drawing.Point(341, 149);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(211, 188);
             this.btnStop.TabIndex = 1;
@@ -93,11 +94,23 @@
             this.lblUser.TabIndex = 5;
             this.lblUser.Text = "User";
             // 
+            // btnSpeechRequest
+            // 
+            this.btnSpeechRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSpeechRequest.Location = new System.Drawing.Point(99, 516);
+            this.btnSpeechRequest.Name = "btnSpeechRequest";
+            this.btnSpeechRequest.Size = new System.Drawing.Size(301, 86);
+            this.btnSpeechRequest.TabIndex = 6;
+            this.btnSpeechRequest.Text = "Make Speech Request";
+            this.btnSpeechRequest.UseVisualStyleBackColor = true;
+            this.btnSpeechRequest.Click += new System.EventHandler(this.btnSpeechRequest_Click);
+            // 
             // VoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 410);
+            this.ClientSize = new System.Drawing.Size(814, 774);
+            this.Controls.Add(this.btnSpeechRequest);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.txtUser);
             this.Controls.Add(this.lblOutput);
@@ -120,6 +133,7 @@
         private System.Windows.Forms.Label lblOutput;
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Label lblUser;
+        private System.Windows.Forms.Button btnSpeechRequest;
     }
 }
 
