@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Configuration;
 using System.Windows.Forms;
+using Innovation.Voice.Win.UI.Models;
 using Innovation.Voice.Win.UI.Query.SpeechQueries;
+using Newtonsoft.Json;
 
 namespace Innovation.Voice.Win.UI
 {
@@ -46,15 +48,12 @@ namespace Innovation.Voice.Win.UI
 
         private void btnAuthenticate_Click(object sender, EventArgs e)
         {
-            //var accessGrantedForm = new AccessGrantedForm();
-            //accessGrantedForm.Show();
-
-            var identifyQuery = new WebSpeechIdentificationQuery()
+            var identifyQuery = new WebSpeechIdentificationQuery
             {
-                IdentificationProfileIds = string.Format("{0},{1},{2}", 
-                    ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + 1], 
-                    ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + 2], 
-                    ConfigurationManager.AppSettings["VerificationProfileId_" + cboUsername.Text + 3]),
+                IdentificationProfileIds = string.Format("{0},{1},{2}",
+                    ConfigurationManager.AppSettings["VerificationProfileId_todd.jasper1"],
+                    ConfigurationManager.AppSettings["VerificationProfileId_frank.venezia1"],
+                    ConfigurationManager.AppSettings["VerificationProfileId_kait.stecher1"]),
                 ShortAudio = true
             };
 
@@ -63,9 +62,21 @@ namespace Innovation.Voice.Win.UI
 
             var identifyUri = new Uri(identifyQuery.ToString());
             var downloader = new HttpDownloader();
-            var response = downloader.GetIdentificationResponse(identifyUri, wavBytes);
+            var operationLocation = downloader.GetIdentificationResponse(identifyUri, wavBytes);
 
-            MessageBox.Show(response);
+            var response = downloader.GetOperationResponse(new Uri(operationLocation));
+            var responseModel = JsonConvert.DeserializeObject<IdentificationModel>(response);
+
+            if (responseModel.Status.ToLower() == "success")
+            {
+                var accessGrantedForm = new AccessGrantedForm();
+                accessGrantedForm.Show();
+            }
+            else
+            {
+                var accessDeniedForm = new AccessDeniedForm();
+                accessDeniedForm.Show();
+            }
         }
     }
 }
