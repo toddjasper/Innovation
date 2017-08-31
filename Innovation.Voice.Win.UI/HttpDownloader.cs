@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Net;
+using System.Text;
 
 namespace Innovation.Voice.Win.UI
 {
@@ -13,9 +15,9 @@ namespace Innovation.Voice.Win.UI
             request.Proxy = null;
             request.ServicePoint.Expect100Continue = false;
             request.Method = "POST";
+            request.Headers.Add("Ocp-Apim-Subscription-Key", ConfigurationManager.AppSettings["SpeechKey1"]);
 
-            //request.Headers.Add("Authorization", "Basic " + basicAuth);
-            //request.Headers.Add("X-Forwarded-For", parameters["ip"] + "," + xff);
+            AddPostParameters(request, postData);
 
             request.ServicePoint.Expect100Continue = false;
             using (var httpWebResponse = (HttpWebResponse)request.GetResponse())
@@ -38,6 +40,17 @@ namespace Innovation.Voice.Win.UI
                     }
                     return responseString;
                 }
+            }
+        }
+
+        private void AddPostParameters(WebRequest request, byte[] bytes)
+        {
+            var encoding = (Encoding)new UTF8Encoding(false);
+            request.ContentLength = bytes.Length;
+
+            using (var streamWriter = new StreamWriter(request.GetRequestStream(), encoding))
+            {
+                streamWriter.Write(bytes);
             }
         }
     }

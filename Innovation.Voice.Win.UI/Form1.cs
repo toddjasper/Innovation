@@ -29,11 +29,12 @@ namespace Innovation.Voice.Win.UI
             mciSendString("close recsound ", "", 0, 0);
         }
 
-        private void btnSpeechRequest_Click(object sender, System.EventArgs e)
+        private void btnEnrollAudio_Click(object sender, System.EventArgs e)
         {
             var enrollQuery = new WebSpeechEnrollmentQuery
             {
-                ProfileId = ConfigurationManager.AppSettings["VerificationProfileId"]
+                ProfileId = ConfigurationManager.AppSettings["VerificationProfileId"],
+                ShortAudio = true
             };
 
             var fileHelper = new FileHelper();
