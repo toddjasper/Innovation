@@ -17,7 +17,12 @@ namespace Innovation.Voice.Win.UI
             request.Method = "POST";
             request.Headers.Add("Ocp-Apim-Subscription-Key", ConfigurationManager.AppSettings["SpeechKey1"]);
 
-            AddPostParameters(request, postData);
+            var encoding = (Encoding)new UTF8Encoding(false);
+            request.ContentLength = postData.Length;
+
+            var sw = new StreamWriter(request.GetRequestStream(), encoding);
+            sw.Write(postData);
+            sw.Close();
 
             request.ServicePoint.Expect100Continue = false;
             using (var httpWebResponse = (HttpWebResponse)request.GetResponse())
@@ -40,17 +45,6 @@ namespace Innovation.Voice.Win.UI
                     }
                     return responseString;
                 }
-            }
-        }
-
-        private void AddPostParameters(WebRequest request, byte[] bytes)
-        {
-            var encoding = (Encoding)new UTF8Encoding(false);
-            request.ContentLength = bytes.Length;
-
-            using (var streamWriter = new StreamWriter(request.GetRequestStream(), encoding))
-            {
-                streamWriter.Write(bytes);
             }
         }
     }
