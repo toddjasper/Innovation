@@ -6,6 +6,9 @@ namespace Innovation.Voice.Win.UI
     {
         public byte[] FileToBytes(string filePath)
         {
+            if (!File.Exists(filePath))
+                return null;
+
             var stream = File.OpenRead(filePath);
             var fileBytes = new byte[stream.Length];
 

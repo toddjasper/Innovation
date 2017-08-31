@@ -46,7 +46,6 @@ C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\bin\Debug\AxIntero
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Interop.AUDIOCAPTURELib.dll
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\AxInterop.AUDIOCAPTURELib.dll
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.csproj.ResolveComReference.cache
-C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.EnrollmentForm.resources
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.MainForm.resources
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.AccessDeniedForm.resources
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.AccessGrantedForm.resources

@@ -31,10 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.miEnroll = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnAuthenticate = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboUsername = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,37 +46,29 @@
             this.miFile});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(702, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(706, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // miFile
             // 
             this.miFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miEnroll,
             this.miExit});
             this.miFile.Name = "miFile";
             this.miFile.Size = new System.Drawing.Size(44, 24);
             this.miFile.Text = "&File";
             // 
-            // miEnroll
-            // 
-            this.miEnroll.Name = "miEnroll";
-            this.miEnroll.Size = new System.Drawing.Size(138, 26);
-            this.miEnroll.Text = "&Register";
-            this.miEnroll.Click += new System.EventHandler(this.miEnroll_Click);
-            // 
             // miExit
             // 
             this.miExit.Name = "miExit";
-            this.miExit.Size = new System.Drawing.Size(138, 26);
+            this.miExit.Size = new System.Drawing.Size(108, 26);
             this.miExit.Text = "E&xit";
             this.miExit.Click += new System.EventHandler(this.miExit_Click);
             // 
             // btnRegister
             // 
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(12, 77);
+            this.btnRegister.Location = new System.Drawing.Point(15, 79);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(678, 73);
             this.btnRegister.TabIndex = 1;
@@ -86,7 +79,7 @@
             // btnAuthenticate
             // 
             this.btnAuthenticate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuthenticate.Location = new System.Drawing.Point(12, 193);
+            this.btnAuthenticate.Location = new System.Drawing.Point(15, 210);
             this.btnAuthenticate.Name = "btnAuthenticate";
             this.btnAuthenticate.Size = new System.Drawing.Size(678, 73);
             this.btnAuthenticate.TabIndex = 2;
@@ -94,11 +87,35 @@
             this.btnAuthenticate.UseVisualStyleBackColor = true;
             this.btnAuthenticate.Click += new System.EventHandler(this.btnAuthenticate_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Username";
+            // 
+            // cboUsername
+            // 
+            this.cboUsername.FormattingEnabled = true;
+            this.cboUsername.Items.AddRange(new object[] {
+            "todd.jasper",
+            "dc.fisher",
+            "frank.venezia",
+            "kait.stecher"});
+            this.cboUsername.Location = new System.Drawing.Point(15, 49);
+            this.cboUsername.Name = "cboUsername";
+            this.cboUsername.Size = new System.Drawing.Size(221, 24);
+            this.cboUsername.TabIndex = 6;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 458);
+            this.ClientSize = new System.Drawing.Size(706, 673);
+            this.Controls.Add(this.cboUsername);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAuthenticate);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.menuStrip1);
@@ -118,10 +135,11 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem miFile;
-        private System.Windows.Forms.ToolStripMenuItem miEnroll;
         private System.Windows.Forms.ToolStripMenuItem miExit;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button btnAuthenticate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboUsername;
     }
 }
 
