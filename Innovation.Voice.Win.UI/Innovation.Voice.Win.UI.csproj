@@ -93,10 +93,9 @@
     <Compile Include="Query\WebBaseQuery.cs" />
     <Compile Include="Query\WebQueryStringParameter.cs" />
     <Compile Include="Query\WebQueryStringParameters.cs" />
-    <Compile Include="Query\WebSpeechEnrollmentQuery.cs">
+    <Compile Include="Query\SpeechQueries\WebSpeechEnrollmentQuery.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
-    <Compile Include="Query\WebSpeechEnrollmentQuery.xaml.cs" />
     <Compile Include="StringExtensions.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

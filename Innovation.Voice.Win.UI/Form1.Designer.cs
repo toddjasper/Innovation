@@ -36,6 +36,8 @@
             this.txtUser = new System.Windows.Forms.TextBox();
             this.lblUser = new System.Windows.Forms.Label();
             this.btnSpeechRequest = new System.Windows.Forms.Button();
+            this.txtApiResponse = new System.Windows.Forms.TextBox();
+            this.lblApiResponse = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnRecord
@@ -97,7 +99,7 @@
             // btnSpeechRequest
             // 
             this.btnSpeechRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSpeechRequest.Location = new System.Drawing.Point(99, 516);
+            this.btnSpeechRequest.Location = new System.Drawing.Point(12, 451);
             this.btnSpeechRequest.Name = "btnSpeechRequest";
             this.btnSpeechRequest.Size = new System.Drawing.Size(301, 86);
             this.btnSpeechRequest.TabIndex = 6;
@@ -105,11 +107,30 @@
             this.btnSpeechRequest.UseVisualStyleBackColor = true;
             this.btnSpeechRequest.Click += new System.EventHandler(this.btnSpeechRequest_Click);
             // 
+            // txtApiResponse
+            // 
+            this.txtApiResponse.Location = new System.Drawing.Point(15, 590);
+            this.txtApiResponse.Multiline = true;
+            this.txtApiResponse.Name = "txtApiResponse";
+            this.txtApiResponse.Size = new System.Drawing.Size(1125, 391);
+            this.txtApiResponse.TabIndex = 7;
+            // 
+            // lblApiResponse
+            // 
+            this.lblApiResponse.AutoSize = true;
+            this.lblApiResponse.Location = new System.Drawing.Point(12, 570);
+            this.lblApiResponse.Name = "lblApiResponse";
+            this.lblApiResponse.Size = new System.Drawing.Size(96, 17);
+            this.lblApiResponse.TabIndex = 8;
+            this.lblApiResponse.Text = "Api Response";
+            // 
             // VoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 774);
+            this.ClientSize = new System.Drawing.Size(1152, 993);
+            this.Controls.Add(this.lblApiResponse);
+            this.Controls.Add(this.txtApiResponse);
             this.Controls.Add(this.btnSpeechRequest);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.txtUser);
@@ -134,6 +155,8 @@
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Button btnSpeechRequest;
+        private System.Windows.Forms.TextBox txtApiResponse;
+        private System.Windows.Forms.Label lblApiResponse;
     }
 }
 
