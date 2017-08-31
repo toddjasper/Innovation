@@ -157,6 +157,8 @@
     <Content Include="Images\access_granted.gif" />
     <Content Include="Images\record.png" />
     <Content Include="Images\stop.png" />
+    <Content Include="Sound\access_denied.wav" />
+    <Content Include="Sound\access_granted.wav" />
     <Content Include="voice.ico" />
   </ItemGroup>
   <ItemGroup>

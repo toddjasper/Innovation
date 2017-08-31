@@ -30,5 +30,14 @@ namespace Innovation.Voice.Win.UI
             var form = new EnrollmentForm();
             form.Show();
         }
+
+        private void btnAuthenticate_Click(object sender, EventArgs e)
+        {
+            var accessDeniedForm = new AccessDeniedForm();
+            accessDeniedForm.Show();
+
+            //var accessGrantedForm = new AccessGrantedForm();
+            //accessGrantedForm.Show();
+        }
     }
 }

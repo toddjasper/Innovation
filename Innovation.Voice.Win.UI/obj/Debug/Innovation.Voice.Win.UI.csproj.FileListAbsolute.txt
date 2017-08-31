@@ -48,3 +48,5 @@ C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\AxIntero
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.csproj.ResolveComReference.cache
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.EnrollmentForm.resources
 C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.MainForm.resources
+C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.AccessDeniedForm.resources
+C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\obj\Debug\Innovation.Voice.Win.UI.AccessGrantedForm.resources

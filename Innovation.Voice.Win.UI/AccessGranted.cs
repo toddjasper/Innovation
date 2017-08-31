@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Innovation.Voice.Win.UI
@@ -15,6 +8,20 @@ namespace Innovation.Voice.Win.UI
         public AccessGrantedForm()
         {
             InitializeComponent();
+        }
+
+        private void picAccessGranted_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AccessGrantedForm_Load(object sender, EventArgs e)
+        {
+            var player = new System.Media.SoundPlayer
+            {
+                SoundLocation = @"C:\temp\InnovationProjects\Innovation\Innovation.Voice.Win.UI\Sound\access_granted.wav"
+            };
+            player.Play();
         }
     }
 }

@@ -92,6 +92,7 @@
             this.btnAuthenticate.TabIndex = 2;
             this.btnAuthenticate.Text = "Authenticate";
             this.btnAuthenticate.UseVisualStyleBackColor = true;
+            this.btnAuthenticate.Click += new System.EventHandler(this.btnAuthenticate_Click);
             // 
             // MainForm
             // 
