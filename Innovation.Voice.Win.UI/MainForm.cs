@@ -83,7 +83,6 @@ namespace Innovation.Voice.Win.UI
             }
 
             var fileHelper = new FileHelper();
-            //var wavBytes = fileHelper.FileToBytes(_identificationPath + cboUsername.Text + ".identify.wav");
             var wavBytes = fileHelper.FileToBytes(_identificationPath + "attempt.wav");
             var identifyUri = new Uri(identifyQuery.ToString());
             var downloader = new HttpDownloader();
