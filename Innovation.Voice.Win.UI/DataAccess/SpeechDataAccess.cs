@@ -46,6 +46,31 @@ namespace Innovation.Voice.Win.UI.DataAccess
             return entity;
         }
 
+        public ProfileEntity GetAllProfileIds()
+        {
+            if (_sqlConnection == null) return null;
+
+            var entity = new ProfileEntity { Ids = new List<string>() };
+
+            try
+            {
+                _sqlConnection.Open();
+
+                var sqlCommand = new SqlCommand("SELECT ProfileId FROM [dbo].[Profiles]", _sqlConnection) { CommandType = CommandType.Text };
+                var reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    entity.Ids.Add(reader["ProfileId"] as string);
+                }
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+
+            return entity;
+        }
+
         public void InsertProfileId(string username, string profileId)
         {
             if (_sqlConnection == null) return;

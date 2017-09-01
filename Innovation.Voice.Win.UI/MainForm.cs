@@ -120,7 +120,7 @@ namespace Innovation.Voice.Win.UI
                 var profileId = JsonConvert.DeserializeObject<ProfileModel>(response).ProfileId;
 
                 var speechDataAccess = new SpeechDataAccess();
-                speechDataAccess.InsertProfileId(cboUsername.Text, profileId);
+                speechDataAccess.InsertProfileId(txtUsername.Text, profileId);
             }
 
             MessageBox.Show("Profiles created successfully", "Profile Creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -164,6 +164,12 @@ namespace Innovation.Voice.Win.UI
             return speechDataAccess.GetProfileIds(cboUsername.Text).Ids;
         }
 
+        private IEnumerable<string> GetAllProfileIds()
+        {
+            var speechDataAccess = new SpeechDataAccess();
+            return speechDataAccess.GetAllProfileIds().Ids;
+        }
+
         private void ShowAccessGranted()
         {
             var accessGrantedForm = new AccessGrantedForm();
@@ -182,7 +188,7 @@ namespace Innovation.Voice.Win.UI
             cboUsername.Items.Add("frank.venezia");
             cboUsername.Items.Add("kait.stecher");
             cboUsername.Items.Add("dave.delphia");
-            cboUsername.Items.Add("jane.doe");
+            cboUsername.Items.Add("todd.jasper");
         }
     }
 }
